@@ -10,48 +10,49 @@ namespace FryingEggs
     {
         static void Main(string[] args)
         {
-            Boolean[] plates = new Boolean[5];
+            List<bool> plates = new List<bool>();
+            bool[] array = new bool[] { false, false, false, false, false };
+            plates.AddRange(array);
             Console.WriteLine("Antal spillere");
             int playerCount = Convert.ToInt32(Console.ReadLine());
-            PlayerList playerList = new PlayerList(playerCount);
+            PlayerList playerList = new PlayerList();
             for(int i = 0; i < playerCount; i++)
             {
                 int playerCounter = i + 1;
                 Console.WriteLine("Navn på spiller #" + playerCounter);
                 string name = Console.ReadLine();
-                playerList.players[i] = new Player(name);
+                playerList.Players.Add(new Player(name));
             }
             Console.WriteLine("Spillere i æggespil: ");
-            foreach(Player player in playerList.players)
+            foreach(Player player in playerList.Players)
             {
                 Console.WriteLine(player.PrintPlayerInfo());
             }
             
             while(playerList.GetLeftOverEggs() > 0)
             { 
-                foreach (Player player in playerList.players)
+                foreach (Player player in playerList.Players)
                 {
                     int roll = player.RollDice();
-                    if (player.eggCount > 0)
+                    if (player.EggCount > 0)
                     {
                         if (roll == 5 || plates[roll])
                         {
-
-                            player.eggCount--;
-                            Console.WriteLine(player.name + " slog " + roll + " og lagde et æg på tallerkenen - " + player.eggCount + " æg tilbage");
+                            player.EggCount--;
+                            Console.WriteLine(player.Name + " slog " + roll + " og lagde et æg på tallerkenen - " + player.EggCount + " æg tilbage");
                         }
                         else
                         {
-                            player.eggCount++;
-                            Console.WriteLine(player.name + " slog " + roll + " og fik et æg fra tallerkenen - " + player.eggCount + " æg tilbage");
+                            player.EggCount++;
+                            Console.WriteLine(player.Name + " slog " + roll + " og fik et æg fra tallerkenen - " + player.EggCount + " æg tilbage");
                         }
                         if (roll < 5)
                         {
                             plates[roll] = !plates[roll];
                         }
-                        if(player.eggCount == 0)
+                        if(player.EggCount == 0)
                         {
-                            Console.WriteLine(player.name + "er kommet af med alle æg efter "+player.rollCount+" slag!");
+                            Console.WriteLine(player.Name + "er kommet af med alle æg efter "+player.RollCount+" slag!");
                         }
                     }
                 }

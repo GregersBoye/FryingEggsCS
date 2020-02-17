@@ -8,27 +8,27 @@ namespace FryingEggs
 {
     class Player
     {
-        public int eggCount { get; set; }
-        public int rollCount { get; set; }
-        public string name { get; set; }
-        public Random random { get; set; }
+        public int EggCount { get; set; }
+        public int RollCount { get; set; }
+        public string Name { get; set; }
+        public Random Random { get; set; }
 
         public Player(string name)
         {
-            this.random = new Random();
-            this.name = name;
-            this.eggCount = 10;
+            this.Random = new Random();
+            this.Name = name;
+            this.EggCount = 10;
         }
 
         public string PrintPlayerInfo()
         {
-            return string.Format("{0} - {1}", this.name, this.eggCount);
+            return string.Format("{0} - {1}", this.Name, this.EggCount);
         }
 
         public int RollDice()
         {
-            this.rollCount++;
-            return this.random.Next(0, 6);
+            this.RollCount++;
+            return this.Random.Next(0, 6);
 
         }
     }

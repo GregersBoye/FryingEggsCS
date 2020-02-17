@@ -8,19 +8,18 @@ namespace FryingEggs
 {
     class PlayerList
     {
-        public Player[] players { get; set; }
+        public List<Player> Players { get; set; }
 
-        public PlayerList(int playerCount)
+        public PlayerList()
         {
-            players = new Player[playerCount];
+            this.Players = new List<Player>();
         }
-
         public int GetLeftOverEggs()
         {
             int leftOverEggs = 0;
-            foreach(Player player in this.players)
+            foreach(Player player in this.Players)
             {
-                leftOverEggs += player.eggCount;
+                leftOverEggs += player.EggCount;
             }
 
             return leftOverEggs;
